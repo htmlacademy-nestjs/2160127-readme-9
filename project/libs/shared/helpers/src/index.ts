@@ -1,1 +1,1 @@
-export * from './lib/helpers';
+// Ре-экспорт модулей из `./lib`
