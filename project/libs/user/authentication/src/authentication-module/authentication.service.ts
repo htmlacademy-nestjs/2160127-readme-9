@@ -6,7 +6,7 @@ import { UserRole } from '@project/shared-core';
 
 
 import { CreateUserDto } from '../dto/create-user.dto';
-import { AUTH_USER_EXISTS, AUTH_USER_NOT_FOUND, AUTH_USER_PASSWORD_WRONG } from './authentication.constant';
+import { AuthUserErrorMessage } from './authentication.constant';
 import { LoginUserDto } from '../dto/login-user.dto';
 
 @Injectable()
@@ -27,7 +27,7 @@ export class AuthenticationService {
       .findByEmail(email);
 
     if (existUser) {
-      throw new ConflictException(AUTH_USER_EXISTS);
+      throw new ConflictException(AuthUserErrorMessage.AuthUserExists);
     }
 
     const userEntity = await new BlogUserEntity(blogUser)
@@ -44,11 +44,11 @@ export class AuthenticationService {
     const existUser = await this.blogUserRepository.findByEmail(email);
 
     if (!existUser) {
-      throw new NotFoundException(AUTH_USER_NOT_FOUND);
+      throw new NotFoundException(AuthUserErrorMessage.AuthUserNotFound);
     }
 
     if (!await existUser.comparePassword(password)) {
-      throw new UnauthorizedException(AUTH_USER_PASSWORD_WRONG);
+      throw new UnauthorizedException(AuthUserErrorMessage.AuthUserPasswordWrong);
     }
 
     return existUser;
@@ -58,7 +58,7 @@ export class AuthenticationService {
     const user = await this.blogUserRepository.findById(id);
 
     if (! user) {
-      throw new NotFoundException(AUTH_USER_NOT_FOUND);
+      throw new NotFoundException(AuthUserErrorMessage.AuthUserNotFound);
     }
 
     return user;
