@@ -1,2 +1,2 @@
-import { UserConfigModule } from "./user-config.module";
+export { UserConfigModule } from "./user-config.module";
 
