@@ -4,16 +4,14 @@ Content-Type: application/json
 
 {
   "email": "user@notfound.ru",
-  "dateBirth": "2012-02-22",
-  "firstname": "Keks",
-  "lastname": "Smith",
+  "name": "Keks",
   "password": "123456"
 }
 
 ###
 
 # Get user by ID
-GET http://localhost:3001/user/auth/ccd3bc1b-f32f-4123-8f45-18ac39d83934 HTTP/1.1
+GET http://localhost:3001/user/auth/682cc3728546c5e8c6e32337 HTTP/1.1
 
 ###
 
@@ -22,7 +20,7 @@ POST http://localhost:3001/user/auth/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "user@notfound.local",
+  "email": "user@notfound.ru",
   "password": "123456"
 }
 
