@@ -8,7 +8,6 @@ import { AppModule } from './app/app.module';
 
 const GLOBAL_PREFIX = 'user';
 const SPEC_PREFIX = 'spec';
-//const PORT = process.env.PORT || '3001';
 
 
 
