@@ -3,6 +3,11 @@ services:
   readme.user.mongo:
     image: mongo:4.4
     restart: always
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.runCommand('ping').ok", "--quiet"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     container_name: readme.user.mongo
 
     environment:
