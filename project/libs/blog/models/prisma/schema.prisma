@@ -18,11 +18,8 @@ model Post {
   id        String   @id @default(uuid()) @map("id")
   title     String   @db.VarChar(50)
   userId    String   @map("user_id") // Внешний ID пользователя
-  categories  Category[]
-  // tags      Tag[] // Связь с тегами
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
-
 
   // Специфические поля для разных типов публикаций
   videoPost VideoPost?
@@ -30,6 +27,9 @@ model Post {
   quotePost QuotePost?
   photoPost PhotoPost?
   linkPost  LinkPost?
+  categories  Category[]
+  comments    Comment[]
+  // tags      Tag[] // Связь с тегами
 
   @@index([title])
   @@index([userId])
@@ -46,6 +46,18 @@ model Category {
   @@map("categories")
 }
 
+model Comment {
+  id          String    @id @default(uuid())
+  message     String
+  userId      String    @map("user_id")
+  post        Post      @relation(fields: [postId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  postId      String    @map("post_id")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  @@index([postId])
+  @@map("comments")
+}
 
 // Модель для видео-публикаций
 model VideoPost {
