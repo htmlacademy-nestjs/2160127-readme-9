@@ -15,9 +15,10 @@ datasource db {
 }
 
 model Post {
-  id        String   @id @default(uuid())
+  id        String   @id @default(uuid()) @map("id")
   title     String   @db.VarChar(50)
   userId    String   @map("user_id") // Внешний ID пользователя
+  categories  Category[]
   // tags      Tag[] // Связь с тегами
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -35,11 +36,20 @@ model Post {
   @@map("posts")
 }
 
+model Category {
+  id        String  @id @default(uuid())
+  title     String
+  posts     Post[]
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  @@index([title])
+  @@map("categories")
+}
 
 
 // Модель для видео-публикаций
 model VideoPost {
-  id        String   @id @default(uuid())
+  id        String   @id @default(uuid()) @map("id")
   postId    String   @unique @map("post_id")
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   videoUrl  String   @map("video_url")
@@ -51,7 +61,7 @@ model VideoPost {
 
 // Модель для текстовых публикаций
 model TextPost {
-  id        String   @id @default(uuid())
+  id        String   @id @default(uuid()) @map("id")
   postId    String   @unique @map("post_id")
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   announce  String   @db.VarChar(255) // Анонс
@@ -64,7 +74,7 @@ model TextPost {
 
 // Модель для публикаций-цитат
 model QuotePost {
-  id        String   @id @default(uuid())
+  id        String   @id @default(uuid()) @map("id")
   postId    String   @unique @map("post_id")
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   text      String   @db.VarChar(300) // Текст цитаты
