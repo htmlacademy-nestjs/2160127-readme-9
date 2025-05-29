@@ -22,11 +22,11 @@ model Post {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   // Специфические поля для разных типов публикаций
-  videoPost VideoPost?
-  textPost  TextPost?
-  quotePost QuotePost?
-  photoPost PhotoPost?
-  linkPost  LinkPost?
+  //  videoPost VideoPost?
+  // textPost  TextPost?
+  // quotePost QuotePost?
+  // photoPost PhotoPost?
+  // linkPost  LinkPost?
   categories  Category[]
   comments    Comment[]
   favorite    Favorite[]
@@ -70,70 +70,70 @@ model Favorite {
   @@map("favorites")
 }
 
-// Модель для видео-публикаций
-model VideoPost {
-  id        String   @id @default(uuid()) @map("id")
-  postId    String   @unique @map("post_id")
-  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  videoUrl  String   @map("video_url")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+// // Модель для видео-публикаций
+// model VideoPost {
+//   id        String   @id @default(uuid()) @map("id")
+//   postId    String   @unique @map("post_id")
+//   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+//   videoUrl  String   @map("video_url")
+//   createdAt DateTime @default(now()) @map("created_at")
+//   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("video_posts")
-}
+//   @@map("video_posts")
+// }
 
 // Модель для текстовых публикаций
-model TextPost {
-  id        String   @id @default(uuid()) @map("id")
-  postId    String   @unique @map("post_id")
-  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  announce  String   @db.VarChar(255) // Анонс
-  content   String   @db.VarChar(1024) // Основной текст
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+// model TextPost {
+//   id        String   @id @default(uuid()) @map("id")
+//   postId    String   @unique @map("post_id")
+//   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+//   announce  String   @db.VarChar(255) // Анонс
+//   content   String   @db.VarChar(1024) // Основной текст
+//   createdAt DateTime @default(now()) @map("created_at")
+//   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("text_posts")
-}
+//   @@map("text_posts")
+// }
 
 // Модель для публикаций-цитат
-model QuotePost {
-  id        String   @id @default(uuid()) @map("id")
-  postId    String   @unique @map("post_id")
-  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  text      String   @db.VarChar(300) // Текст цитаты
-  author    String   @db.VarChar(50) // Автор цитаты
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+// model QuotePost {
+//   id        String   @id @default(uuid()) @map("id")
+//   postId    String   @unique @map("post_id")
+//   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+//   text      String   @db.VarChar(300) // Текст цитаты
+//   author    String   @db.VarChar(50) // Автор цитаты
+//   createdAt DateTime @default(now()) @map("created_at")
+//   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("quote_posts")
-}
+//   @@map("quote_posts")
+// }
 
 // Модель для фото-публикаций
-model PhotoPost {
-  id        String   @id @default(uuid())
-  postId    String   @unique @map("post_id")
-  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  photoUrl  String   @map("photo_url") // Путь к файлу
-  size      Int // Размер файла в байтах (макс. 1MB = 1048576)
-  format    String   @db.VarChar(10) // Формат файла (jpg, png)
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+// model PhotoPost {
+//   id        String   @id @default(uuid())
+//   postId    String   @unique @map("post_id")
+//   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+//   photoUrl  String   @map("photo_url") // Путь к файлу
+//   size      Int // Размер файла в байтах (макс. 1MB = 1048576)
+//   format    String   @db.VarChar(10) // Формат файла (jpg, png)
+//   createdAt DateTime @default(now()) @map("created_at")
+//   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("photo_posts")
-}
+//   @@map("photo_posts")
+// }
 
 // Модель для публикаций-ссылок
-model LinkPost {
-  id          String   @id @default(uuid())
-  postId      String   @unique @map("post_id")
-  post        Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  url         String // URL ссылки
-  description String?  @db.VarChar(300) // Описание (опционально)
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+// model LinkPost {
+//   id          String   @id @default(uuid())
+//   postId      String   @unique @map("post_id")
+//   post        Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+//   url         String // URL ссылки
+//   description String?  @db.VarChar(300) // Описание (опционально)
+//   createdAt DateTime @default(now()) @map("created_at")
+//   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("link_posts")
-}
+//   @@map("link_posts")
+// }
 
 // Модель для тегов
 // model Tag {
