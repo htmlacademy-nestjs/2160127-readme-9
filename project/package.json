@@ -2,7 +2,11 @@
   "name": "@project/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "docker:user:up": "powershell .\\docker-user-run.ps1",
+    "docker:user:down": "docker compose --file ./apps/user/docker-compose.dev.yml --project-name \"readme-user\" down",
+    "docker:user:check-health": "docker inspect --format='{{json .State.Health}}' readme.user.mongo"
+  },
   "private": true,
   "dependencies": {
     "@nestjs/common": "11.1.1",
@@ -11,6 +15,7 @@
     "@nestjs/mongoose": "11.0.3",
     "@nestjs/platform-express": "11.1.1",
     "@nestjs/swagger": "11.2.0",
+    "@prisma/client": "6.8.2",
     "axios": "^1.6.0",
     "bcrypt": "6.0.0",
     "class-transformer": "0.5.1",
@@ -48,6 +53,7 @@
     "jsonc-eslint-parser": "^2.1.0",
     "nx": "20.8.1",
     "prettier": "^2.6.2",
+    "prisma": "6.8.2",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",

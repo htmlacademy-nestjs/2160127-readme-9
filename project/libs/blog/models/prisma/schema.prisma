@@ -1,0 +1,147 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output = "../../../../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id        String   @id @default(uuid()) @map("id")
+  title     String   @db.VarChar(50)
+  userId    String   @map("user_id") // Внешний ID пользователя
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Специфические поля для разных типов публикаций
+  //  videoPost VideoPost?
+  // textPost  TextPost?
+  // quotePost QuotePost?
+  // photoPost PhotoPost?
+  // linkPost  LinkPost?
+  categories  Category[]
+  comments    Comment[]
+  favorite    Favorite[]
+  // tags      Tag[] // Связь с тегами
+
+  @@index([title])
+  @@index([userId])
+  @@map("posts")
+}
+
+model Category {
+  id        String  @id @default(uuid())
+  title     String
+  posts     Post[]
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  @@index([title])
+  @@map("categories")
+}
+
+model Comment {
+  id          String    @id @default(uuid())
+  message     String
+  userId      String    @map("user_id")
+  post        Post      @relation(fields: [postId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  postId      String    @map("post_id")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  @@index([postId])
+  @@map("comments")
+}
+
+model Favorite {
+  id          String    @id @default(uuid())
+  post        Post      @relation(fields: [postId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  postId      String    @map("post_id")
+  userId      String    @map("user_id")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  @@map("favorites")
+}
+
+// // Модель для видео-публикаций
+// model VideoPost {
+//   id        String   @id @default(uuid()) @map("id")
+//   postId    String   @unique @map("post_id")
+//   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+//   videoUrl  String   @map("video_url")
+//   createdAt DateTime @default(now()) @map("created_at")
+//   updatedAt DateTime @updatedAt @map("updated_at")
+
+//   @@map("video_posts")
+// }
+
+// Модель для текстовых публикаций
+// model TextPost {
+//   id        String   @id @default(uuid()) @map("id")
+//   postId    String   @unique @map("post_id")
+//   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+//   announce  String   @db.VarChar(255) // Анонс
+//   content   String   @db.VarChar(1024) // Основной текст
+//   createdAt DateTime @default(now()) @map("created_at")
+//   updatedAt DateTime @updatedAt @map("updated_at")
+
+//   @@map("text_posts")
+// }
+
+// Модель для публикаций-цитат
+// model QuotePost {
+//   id        String   @id @default(uuid()) @map("id")
+//   postId    String   @unique @map("post_id")
+//   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+//   text      String   @db.VarChar(300) // Текст цитаты
+//   author    String   @db.VarChar(50) // Автор цитаты
+//   createdAt DateTime @default(now()) @map("created_at")
+//   updatedAt DateTime @updatedAt @map("updated_at")
+
+//   @@map("quote_posts")
+// }
+
+// Модель для фото-публикаций
+// model PhotoPost {
+//   id        String   @id @default(uuid())
+//   postId    String   @unique @map("post_id")
+//   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+//   photoUrl  String   @map("photo_url") // Путь к файлу
+//   size      Int // Размер файла в байтах (макс. 1MB = 1048576)
+//   format    String   @db.VarChar(10) // Формат файла (jpg, png)
+//   createdAt DateTime @default(now()) @map("created_at")
+//   updatedAt DateTime @updatedAt @map("updated_at")
+
+//   @@map("photo_posts")
+// }
+
+// Модель для публикаций-ссылок
+// model LinkPost {
+//   id          String   @id @default(uuid())
+//   postId      String   @unique @map("post_id")
+//   post        Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+//   url         String // URL ссылки
+//   description String?  @db.VarChar(300) // Описание (опционально)
+//   createdAt DateTime @default(now()) @map("created_at")
+//   updatedAt DateTime @updatedAt @map("updated_at")
+
+//   @@map("link_posts")
+// }
+
+// Модель для тегов
+// model Tag {
+//   id        String   @id @default(uuid())
+//   name      String   @unique @db.VarChar(50)
+//   posts     Post[]
+//   createdAt DateTime @default(now()) @map("created_at")
+//   updatedAt DateTime @updatedAt @map("updated_at")
+
+//   @@map("tags")
+// }
