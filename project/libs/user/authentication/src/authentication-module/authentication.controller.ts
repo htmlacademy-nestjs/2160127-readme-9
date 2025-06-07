@@ -41,11 +41,7 @@ export class AuthenticationController {
 
   @Get('/demo/:id')
   public async demoPipe(@Param('id') id: number) {
-    console.log(typeof id);
+    console.log(`type = ${typeof id},value = ${id}`);
   }
-
-  @Get('/demo-parse/:id')
-  public async demoPipeParse(@Param('id', ParseIntPipe ) id: number) {
-    console.log(typeof id);
-  }
+  
 }

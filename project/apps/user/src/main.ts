@@ -28,7 +28,9 @@ const PORT = configService.get('application.port');
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup(SPEC_PREFIX, app, document);
 
-    app.useGlobalPipes(new ValidationPipe());
+    app.useGlobalPipes(new ValidationPipe({
+      transform: true,
+    }));
 
   await app.listen(PORT);
 
