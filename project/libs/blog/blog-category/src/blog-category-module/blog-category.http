@@ -28,7 +28,7 @@ DELETE http://localhost:3002/blog/categories/38f71d91-35bf-4d7c-a870-00fe50a1723
 
 # Update a category by id
 
-PATCH http://localhost:3002/blog/categories/38f71d91-35bf-4d7c-a870-00fe50a17231 HTTP/1.1
+ PATCH http://localhost:3002/blog/categories/4d3e8bfb-c26a-47b8-968e-e36f32e588c7 HTTP/1.1
 Content-Type: application/json
 
 {

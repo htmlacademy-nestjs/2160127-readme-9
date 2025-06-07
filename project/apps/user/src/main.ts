@@ -1,7 +1,7 @@
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
 
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 
@@ -27,6 +27,8 @@ const PORT = configService.get('application.port');
 
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup(SPEC_PREFIX, app, document);
+
+    app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(PORT);
 
