@@ -23,6 +23,7 @@ function getPosts() {
       title: 'Худеющий',
       userId: FIRST_USER_ID,
       content: 'Недавно прочитал страшный роман «Худеющий».',
+      description: 'На мой взгляд, это один из самых страшных романов Стивена Кинга.',
       categories: {
         connect: [{ id: FIRST_CATEGORY_UUID }],
       },
@@ -32,6 +33,7 @@ function getPosts() {
       title: 'Вы не знаете JavaScript',
       userId: FIRST_USER_ID,
       content: 'Полезная книга по JavaScript',
+      description: 'Секреты и тайные знания по JavaScript.',
       categories: {
         connect: [
           { id: FIRST_CATEGORY_UUID },
@@ -71,6 +73,8 @@ async function seedDb(prismaClient: PrismaClient) {
       data: {
         id: post.id,
         title: post.title,
+        description: post.description,
+        content: post.description,
         categories: post.categories,
         userId: post.userId,
         comments: post.comments ? {
@@ -82,6 +86,7 @@ async function seedDb(prismaClient: PrismaClient) {
 
   console.info('🤘️ Database was filled');
 }
+
 
 async function bootstrap() {
   const prismaClient = new PrismaClient();
