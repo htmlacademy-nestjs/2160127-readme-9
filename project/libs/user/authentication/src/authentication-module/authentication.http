@@ -3,7 +3,7 @@ POST http://localhost:3001/user/auth/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "user@notfound.ru",
+  "email": "user2@notfound.ru",
   "name": "Keks",
   "password": "123456"
 }
@@ -11,11 +11,12 @@ Content-Type: application/json
 ###
 
 # Get user by ID
-GET http://localhost:3001/user/auth/682cc3728546c5e8c6e32337 HTTP/1.1
-
+GET http://localhost:3001/user/auth/684648cc7ca4860099c416fd HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIiLCJlbWFpbCI6InVzZXJAbm90Zm91bmQucnUiLCJuYW1lIjoiS2VrcyIsImlhdCI6MTc0OTQzNzAzMSwiZXhwIjoxNzQ5NDM3MzMxfQ.1RdZCjxcMZDnSO9H6ibytG6wv8EuvVdtr0omMF9Zs8E
 ###
 # Demo route for Pipe
 GET http://localhost:3001/user/auth/demo/1 HTTP/1.1.
+ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIiLCJlbWFpbCI6InVzZXJAbm90Zm91bmQucnUiLCJuYW1lIjoiS2VrcyIsImlhdCI6MTc0OTQzNzAzMSwiZXhwIjoxNzQ5NDM3MzMxfQ.1RdZCjxcMZDnSO9H6ibytG6wv8EuvVdtr0omMF9Zs8E
 ###
 
 # Login user by email and password

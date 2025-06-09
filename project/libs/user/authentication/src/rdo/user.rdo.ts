@@ -35,12 +35,6 @@ export class UserRdo {
     example: 'Ivan'
   })
   @Expose()
-  public firstname: string;
-
-  @ApiProperty({
-    description: 'User last name',
-    example: 'Ivanov'
-  })
-  @Expose()
-  public lastname: string;
+  public name: string;
+  
 }
