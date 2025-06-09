@@ -17,6 +17,9 @@ export class LoggedUserRdo {
   @Expose()
   public email: string;
 
+  @Expose()
+  public name: string;
+
   @ApiProperty({
     description: 'Access token',
     example: '&&'

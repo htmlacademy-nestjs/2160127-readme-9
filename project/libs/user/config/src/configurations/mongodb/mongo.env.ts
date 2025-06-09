@@ -11,7 +11,7 @@ export class MongoConfiguration {
   public host: string;
 
   @IsNumber({}, { message: EnvValidationMessage.DBPortRequired })
-  @Min(MongoPortConst.MaxPort)
+  @Min(MongoPortConst.MinPort)
   @Max(MongoPortConst.MaxPort)
   @IsOptional()
   public port: number = MongoPortConst.DefaultMongoPort;
