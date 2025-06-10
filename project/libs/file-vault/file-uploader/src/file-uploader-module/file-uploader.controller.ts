@@ -1,6 +1,6 @@
 import 'multer';
 import { Express } from 'express';
-import { Controller, Post, UploadedFile, UseInterceptors, Logger } from '@nestjs/common';
+import { Controller, Post, UploadedFile, UseInterceptors, Logger, BadRequestException } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 import { FileUploaderService } from './file-uploader.service';
@@ -16,9 +16,11 @@ export class FileUploaderController {
   @Post('/upload')
   @UseInterceptors(FileInterceptor('file'))
   public async uploadFile(@UploadedFile() file: Express.Multer.File) {
-    this.logger.debug('in /upload');
-    console.log(cwd);
-    console.log(file);
+    this.logger.debug('in /upload');     
+    if (!file) {
+    throw new BadRequestException('No file uploaded');
+  }
+    
     return this.fileUploaderService.saveFile(file);
   }
 }
