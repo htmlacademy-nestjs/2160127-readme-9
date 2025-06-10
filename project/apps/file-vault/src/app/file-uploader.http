@@ -21,3 +21,8 @@ Content-Type: text/plain
 < base64:./file-uploader.http
 --my-boundary--
 ###
+
+# Get file by ID
+GET http://localhost:3003/storage/files/6847f49a8bc32be4a6eff627 HTTP/1.1
+
+###
