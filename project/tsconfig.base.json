@@ -32,7 +32,8 @@
       "@project/notify-config": ["libs/notify/config/src/index.ts"],
       "@project/shared-core": ["libs/shared/core/src/index.ts"],
       "@project/shared/pipes": ["libs/shared/pipes/src/index.ts"],
-      "@project/user-config": ["libs/user/config/src/index.ts"]
+      "@project/user-config": ["libs/user/config/src/index.ts"],
+      "@project/user-notify": ["libs/user/notify/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
