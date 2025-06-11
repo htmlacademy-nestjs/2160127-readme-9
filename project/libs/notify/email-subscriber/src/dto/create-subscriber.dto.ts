@@ -7,5 +7,5 @@ export class CreateSubscriberDto {
   public email: string;
 
   @IsNotEmpty({ message: SubscriberErrorMessage.NameIsEmpty })
-  public Name: string;  
+  public name: string;  
 }
