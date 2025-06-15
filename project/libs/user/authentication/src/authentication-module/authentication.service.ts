@@ -1,9 +1,11 @@
 import { JwtService } from '@nestjs/jwt';
+import { ConfigType } from '@nestjs/config';
 import {
   ConflictException,
   HttpException,
   HttpStatus,
   Injectable,
+  Inject,
   Logger,
   NotFoundException,
   UnauthorizedException
@@ -11,6 +13,7 @@ import {
 
 import { BlogUserRepository, BlogUserEntity } from '@project/blog-user';
 import { Token, TokenPayload, User } from '@project/shared-core';
+import { jwtConfig } from '@project/user-config';
 
 
 import { CreateUserDto } from '../dto/create-user.dto';
@@ -25,6 +28,7 @@ export class AuthenticationService {
    private readonly blogUserRepository: BlogUserRepository,
 
    private readonly jwtService: JwtService,
+   @Inject(jwtConfig.KEY) private readonly jwtOptions: ConfigType<typeof jwtConfig>,
   ) {}
   public async register(dto: CreateUserDto): Promise<BlogUserEntity> {
     const {email, name, password} = dto;
@@ -86,7 +90,12 @@ export class AuthenticationService {
 
     try {
       const accessToken = await this.jwtService.signAsync(payload);
-      return { accessToken };
+      const refreshToken = await this.jwtService.signAsync(payload, {
+        secret: this.jwtOptions.refreshTokenSecret,
+        expiresIn: this.jwtOptions.refreshTokenExpiresIn
+      });
+
+      return { accessToken, refreshToken };
     } catch (error) {
       this.logger.error('[Token generation error]: ' + error.message);
       throw new HttpException('Ошибка при создании токена.', HttpStatus.INTERNAL_SERVER_ERROR);
