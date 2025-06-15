@@ -1,0 +1,28 @@
+# Upload some file:
+POST http://localhost:3003/storage/files/upload HTTP/1.1
+Content-Type: multipart/form-data; boundary=my-boundary
+
+--my-boundary
+Content-Disposition: form-data; name="file"; filename="test.txt"
+Content-Type: text/plain
+
+Hello World!
+--my-boundary--
+
+###
+
+POST http://localhost:3003/storage/files/upload HTTP/1.1
+Content-Type: multipart/form-data; boundary=my-boundary
+
+--my-boundary
+Content-Disposition: form-data; name="file"; filename="file-uploader.http"
+Content-Type: text/plain
+
+< base64:./file-uploader.http
+--my-boundary--
+###
+
+# Get file by ID
+GET http://localhost:3003/storage/files/6847f49a8bc32be4a6eff627 HTTP/1.1
+
+###

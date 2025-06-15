@@ -1,0 +1,1 @@
+curl smtp://localhost:8025 --mail-from a@iantonov.me --mail-rcpt keks@htmlacademy.local --upload-file ./email.txt

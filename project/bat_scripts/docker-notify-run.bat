@@ -1,0 +1,1 @@
+docker compose --file ./apps/notify/notify.compose.dev.yml --project-name "readme-notify" --env-file ./apps/notify/notify.env up -d
