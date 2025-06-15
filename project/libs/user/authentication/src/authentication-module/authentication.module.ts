@@ -8,6 +8,7 @@ import { NotifyModule } from '@project/user-notify';
 import { AuthenticationController } from './authentication.controller';
 import { AuthenticationService } from './authentication.service';
 import { JwtAccessStrategy } from '../strategies/jwt-access.strategy';
+import { LocalStrategy } from '../strategies/local.strategy';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { JwtAccessStrategy } from '../strategies/jwt-access.strategy';
   providers: [
     AuthenticationService,
     JwtAccessStrategy,
+    LocalStrategy,
   ]
 })
 export class AuthenticationModule {}
