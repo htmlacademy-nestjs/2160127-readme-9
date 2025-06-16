@@ -38,7 +38,7 @@ export class AuthenticationController {
     return newUser.toPOJO();
   }
 
-   @UseGuards(LocalAuthGuard)
+  @UseGuards(LocalAuthGuard)
   @Post('login')
   public async login(@Req() { user }: RequestWithUser) {
     const userToken = await this.authService.createUserToken(user);

@@ -3,8 +3,8 @@ POST http://localhost:3001/user/auth/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "user2@notfound.ru",
-  "name": "Keks",
+  "email": "user123@notfound.ru",
+  "name": "Keks11",
   "password": "123456"
 }
 
@@ -14,18 +14,18 @@ Content-Type: application/json
 GET http://localhost:3001/user/auth/684648cc7ca4860099c416fd HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODQzYzU3NTI2YjkyMTU1YzMzNTIwOTIiLCJlbWFpbCI6InVzZXJAbm90Zm91bmQucnUiLCJuYW1lIjoiS2VrcyIsImlhdCI6MTc1MDA1NzQ3MiwiZXhwIjoxNzUwMDU3NzcyfQ.VtEfToEcDEPOOslJp1v0jHsJKwdvVdOu4qjSGGaQUMM
 ###
-# Demo route for Pipe
+# Get refresh token
 GET http://localhost:3001/user/auth/refresh HTTP/1.1
- Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODQzYzU3NTI2YjkyMTU1YzMzNTIwOTIiLCJlbWFpbCI6InVzZXJAbm90Zm91bmQucnUiLCJuYW1lIjoiS2VrcyIsImlhdCI6MTc1MDA1NzgwNiwiZXhwIjoxNzUwMDU4MTA2fQ.uecIxjda-mxow4NOb3ZztyvJysvb2qlqnr2VdIojjLE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODRmZmViNDRmYTZmOTQzMTRkMGQ5NTQiLCJlbWFpbCI6InVzZXIxMjNAbm90Zm91bmQucnUiLCJuYW1lIjoiS2VrczExIiwiaWF0IjoxNzUwMDc1Nzk3LCJleHAiOjE3NTAwNzYwOTd9.PEzig7cnJOw4tTATsWCxCeuiqPLJb-xGF22bbxCZzwo
+ 
 ###
 
 # Login user by email and password
 POST http://localhost:3001/user/auth/login HTTP/1.1
 Content-Type: application/json
 
-{
-  "id": "684648cc7ca4860099c416fd",
-  "email": "user@notfound.ru",
+{  
+  "email": "user123@notfound.ru",
   "password": "123456"
 }
 
