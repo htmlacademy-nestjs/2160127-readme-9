@@ -33,3 +33,9 @@ Content-Type: application/json
 }
 
 ###
+
+# Check user token
+POST http://localhost:3001/user/auth/check HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODUwZmRmZDdmYWY0MmI1YmNmNmRhOTciLCJlbWFpbCI6InVzZXIxMjRAbm90Zm91bmQucnUiLCJuYW1lIjoiS2VrczExIiwiaWF0IjoxNzUwMTYxODUxLCJleHAiOjE3NTAxNjIxNTF9.xlWiGyLiYVdGF68_YDJzjCh_bdO7TsrnSuBpfYqztM0
+
+###
