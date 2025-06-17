@@ -12,13 +12,15 @@ import {
 } from '@nestjs/common';
 
 import { BlogUserRepository, BlogUserEntity } from '@project/blog-user';
-import { Token, TokenPayload, User } from '@project/shared-core';
+import { Token, User } from '@project/shared-core';
 import { jwtConfig } from '@project/user-config';
+import { createJWTPayload } from '@project/helpers';
 
 
 import { CreateUserDto } from '../dto/create-user.dto';
 import { AuthUserErrorMessage } from './authentication.constant';
 import { LoginUserDto } from '../dto/login-user.dto';
+import { RefreshTokenService } from '../refresh-token-module/refresh-token.service';
 
 
 @Injectable()
@@ -29,6 +31,7 @@ export class AuthenticationService {
 
    private readonly jwtService: JwtService,
    @Inject(jwtConfig.KEY) private readonly jwtOptions: ConfigType<typeof jwtConfig>,
+    private readonly refreshTokenService: RefreshTokenService,
   ) {}
   public async register(dto: CreateUserDto): Promise<BlogUserEntity> {
     const {email, name, password} = dto;
@@ -81,16 +84,13 @@ export class AuthenticationService {
   }
 
   public async createUserToken(user: User): Promise<Token> {
-    const payload: TokenPayload = {
-      sub: user.id,
-      email: user.email,     
-      name: user.name,
-      
-    };
+    const accessTokenPayload = createJWTPayload(user);
+    const refreshTokenPayload = { ...accessTokenPayload, tokenId: crypto.randomUUID() };
+    await this.refreshTokenService.createRefreshSession(refreshTokenPayload);
 
     try {
-      const accessToken = await this.jwtService.signAsync(payload);
-      const refreshToken = await this.jwtService.signAsync(payload, {
+      const accessToken = await this.jwtService.signAsync(accessTokenPayload);
+      const refreshToken = await this.jwtService.signAsync(accessTokenPayload, {
         secret: this.jwtOptions.refreshTokenSecret,
         expiresIn: this.jwtOptions.refreshTokenExpiresIn
       });
