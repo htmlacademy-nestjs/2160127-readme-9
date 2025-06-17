@@ -1,9 +1,15 @@
 import { Module } from '@nestjs/common';
-import { apiConfigModule } from '@project/api-config';
+import { apiConfigModule, getConfig} from '@project/api-config';
+import { HttpModule } from '@nestjs/axios';
 
 
 @Module({
-  imports: [apiConfigModule],
+  imports: [apiConfigModule, 
+    HttpModule.register({
+      timeout: getConfig().httpClient.timeout,
+      maxRedirects: getConfig().httpClient.maxRedirect,
+    }),
+  ],
   controllers: [],
   providers: [],
 })

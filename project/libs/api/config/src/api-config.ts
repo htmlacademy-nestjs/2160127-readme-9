@@ -44,7 +44,7 @@ function validateConfig(config: ApiConfig): void {
   }
 }
 
-function getConfig(): ApiConfig {
+export function getConfig(): ApiConfig {
   const config: ApiConfig = {
     environment: process.env.NODE_ENV as Environment,
     port: parseInt(process.env.PORT || `${DEFAULT_PORT}`, 10),    
