@@ -19,7 +19,7 @@ docker inspect --format="{{json .State.Health}}" readme.user.mongo
 ## Run docker postgres blog:
 
 ```shell
-docker compose --file ./apps/user/docker-compose.dev.yml --project-name "readme-user" --env-file ./apps/user/user.env up -d
+docker compose --file ./apps/blog/docker-compose.dev.yml --project-name "readme-blog"  --env-file ./apps/blog/blog.env up -d
 ```
 ## Stop docker mongo user:
 

@@ -49,7 +49,7 @@ export function getConfig(): ApiConfig {
     environment: process.env.NODE_ENV as Environment,
     port: parseInt(process.env.PORT || `${DEFAULT_PORT}`, 10),    
     applicationServiceURL: {
-      blog: process.env.MONGO_HOST,      
+      blog: process.env.BLOG_SERVICE_URL,      
       fileVault: process.env.FILE_VAULT_SERVICE_URL,
       notity: process.env.NOTIFY_SERVICE_URL,
       user: process.env.USER_SERVICE_URL,     

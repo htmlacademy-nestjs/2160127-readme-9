@@ -3,6 +3,8 @@ import { HttpModule } from '@nestjs/axios';
 
 import { apiConfigModule, getConfig} from '@project/api-config';
 import { UsersController } from './users.controller';
+import { BlogController } from './blog.controller';
+import { CheckAuthGuard } from './guards/check-auth.guard';
 
 
 @Module({
@@ -12,7 +14,10 @@ import { UsersController } from './users.controller';
       maxRedirects: getConfig().httpClient.maxRedirect,
     }),
   ],
-  controllers: [UsersController],
-  providers: [],
+  controllers: [
+    UsersController, 
+    BlogController,
+  ],
+  providers: [CheckAuthGuard],
 })
 export class AppModule {}
