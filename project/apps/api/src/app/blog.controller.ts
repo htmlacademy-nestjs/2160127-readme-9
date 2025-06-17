@@ -6,6 +6,7 @@ import { CheckAuthGuard } from './guards/check-auth.guard';
 
 import { CreatePostDto } from '@project/blog-post'
 import { getConfig} from '@project/api-config';
+import { InjectUserIdInterceptor } from '@project/interceptors';
 
 @Controller('blog')
 @UseFilters(AxiosExceptionFilter)
@@ -16,7 +17,7 @@ export class BlogController {
   ) {}
 
   @UseGuards(CheckAuthGuard)
-  @UseInterceptors(UseInterceptors)
+  @UseInterceptors(InjectUserIdInterceptor)
   @Post('/')
   public async create(@Body() dto: CreatePostDto) {
     const { data } = await this.httpService.axiosRef.post(`${getConfig().applicationServiceURL.blog}/`, dto);

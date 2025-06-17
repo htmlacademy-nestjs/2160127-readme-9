@@ -17,14 +17,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODUwZmRmZ
 
 # Create a new post
 POST http://localhost:3000/api/blog HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODUwZmRmZDdmYWY0MmI1YmNmNmRhOTciLCJlbWFpbCI6InVzZXIxMjRAbm90Zm91bmQucnUiLCJuYW1lIjoiS2VrczExIiwiaWF0IjoxNzUwMTY2MDcxLCJleHAiOjE3NTAxNjYzNzF9.AAh8BAWQFR1MQwWxWKv3Lu_L4dtpzKxb7ffVaZsq5bc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODUwZmRmZDdmYWY0MmI1YmNmNmRhOTciLCJlbWFpbCI6InVzZXIxMjRAbm90Zm91bmQucnUiLCJuYW1lIjoiS2VrczExIiwiaWF0IjoxNzUwMTY2NDQ4LCJleHAiOjE3NTAxNjY3NDh9.wxDGdegIFTMQbeX-gORTltq3br8YOO6_wxADYd56MMs
 Content-Type: application/json
 
 {   
   "title": "Hello world ",
   "description": "Текст анонса",
-  "content": "Расширенный текст публикации",
-  "userId": "658ede7600f80970fcf9e111",
+  "content": "Расширенный текст публикации", 
   "categories": ["39614113-7ad5-45b6-8093-06455437e1e2"]
 }
 ###
+# "userId": "658ede7600f80970fcf9e111",
