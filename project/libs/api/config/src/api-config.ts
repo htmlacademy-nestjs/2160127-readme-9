@@ -26,10 +26,10 @@ const validationSchema = Joi.object({
   environment: Joi.string().valid(...ENVIRONMENTS).required(),
   port: Joi.number().port().default(DEFAULT_PORT),  
   applicationServiceURL: Joi.object({
-    blog: Joi.string().valid().uri(),
-    fileVault: Joi.string().valid().uri(),
-    notity: Joi.string().valid().uri(),
-    user: Joi.string().valid().uri(),    
+    blog: Joi.string().valid(),
+    fileVault: Joi.string().valid(),
+    notity: Joi.string().valid(),
+    user: Joi.string().valid(),    
   }),
   httpClient: {
     maxRedirect: Joi.number(),

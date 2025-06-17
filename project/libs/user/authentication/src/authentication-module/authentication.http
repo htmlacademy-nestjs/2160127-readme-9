@@ -15,11 +15,12 @@ GET http://localhost:3001/user/auth/684648cc7ca4860099c416fd HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODRmZmViNDRmYTZmOTQzMTRkMGQ5NTQiLCJlbWFpbCI6InVzZXIxMjNAbm90Zm91bmQucnUiLCJuYW1lIjoiS2VrczExIiwiaWF0IjoxNzUwMTM2NzUzLCJleHAiOjE3NTAxMzcwNTN9.xHlhEzPTrKMgBCz9scAXajKvkAAx-pD6bLIN3aQUfHY
 ###
 
-# Get refresh token
-GET http://localhost:3001/user/auth/refresh HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODUwZmRmZDdmYWY0MmI1YmNmNmRhOTciLCJlbWFpbCI6InVzZXIxMjRAbm90Zm91bmQucnUiLCJuYW1lIjoiS2VrczExIiwidG9rZW5JZCI6IjRiNDQ0Y2U5LWU5NzItNDlmZC04ZjAyLWUwMDkyYjUwZmEwNSIsImlhdCI6MTc1MDEzODk1NiwiZXhwIjoxNzUyNzMwOTU2fQ.FT7NkuJ0XGnELthdJt_U-e0HJWUbmvfyOE5H18_n6sI
+###
 
- 
+# Get new JWT pair
+POST http://localhost:3001/user/auth/refresh HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODUwZmRmZDdmYWY0MmI1YmNmNmRhOTciLCJlbWFpbCI6InVzZXIxMjRAbm90Zm91bmQucnUiLCJuYW1lIjoiS2VrczExIiwidG9rZW5JZCI6ImQyOWYyMDA4LWI1MDMtNGVhOC04MzI0LTEwYThhMmYzMjU5MCIsImlhdCI6MTc1MDE1ODI2MywiZXhwIjoxNzUyNzUwMjYzfQ.nABDaQQqpKSOF4Wws1jjxED1-R01rZLuaAKIeUON2xo
+
 ###
 
 # Login user by email and password

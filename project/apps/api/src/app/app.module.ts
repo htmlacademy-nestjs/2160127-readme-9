@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
-import { apiConfigModule, getConfig} from '@project/api-config';
 import { HttpModule } from '@nestjs/axios';
+
+import { apiConfigModule, getConfig} from '@project/api-config';
+import { UsersController } from './users.controller';
 
 
 @Module({
@@ -10,7 +12,7 @@ import { HttpModule } from '@nestjs/axios';
       maxRedirects: getConfig().httpClient.maxRedirect,
     }),
   ],
-  controllers: [],
+  controllers: [UsersController],
   providers: [],
 })
 export class AppModule {}
