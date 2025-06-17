@@ -4,6 +4,8 @@ import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
 
+import { RequestIdInterceptor } from '@project/interceptors';
+
 const GLOBAL_PREFIX = 'api';
 const SPEC_PREFIX = 'spec';
 const PORT = process.env.PORT || '3000';
@@ -11,6 +13,7 @@ const PORT = process.env.PORT || '3000';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix(GLOBAL_PREFIX);
+  app.useGlobalInterceptors(new RequestIdInterceptor());
 
   const config = new DocumentBuilder()
       .setTitle('API-сервис')
