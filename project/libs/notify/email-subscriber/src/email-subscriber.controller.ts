@@ -5,6 +5,7 @@ import { EmailSubscriberService } from './email-subscriber.service';
 import { CreateSubscriberDto } from './dto/create-subscriber.dto';
 import { RabbitRouting } from '@project/shared-core';
 import { MailService } from './mail-module/mail.service';
+import { getConfig } from '@project/notify-config';
 
 
 @Controller()
@@ -15,9 +16,9 @@ export class EmailSubscriberController {
   ) {}
 
   @RabbitSubscribe({
-    exchange: 'readme.notify.income',
+    exchange: getConfig().rabbit.exchange,
     routingKey: RabbitRouting.AddSubscriber,
-    queue: 'readme.notify.income',
+    queue: getConfig().rabbit.queue,
   })
   public async create(subscriber: CreateSubscriberDto) {
     this.subscriberService.addSubscriber(subscriber);

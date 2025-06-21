@@ -72,7 +72,7 @@ function validateConfig(config: NotifyConfig): void {
   }
 }
 
-function getConfig(): NotifyConfig {
+export function getConfig(): NotifyConfig {
   const config: NotifyConfig = {
     environment: process.env.NODE_ENV as Environment,
     port: parseInt(process.env.PORT || `${DEFAULT_PORT}`, 10),
