@@ -33,6 +33,15 @@
           "buildTarget": "user:build:production"
         }
       }
+    },
+    "buildImage": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "npx nx run user:build --verbose",
+          "docker build -f apps/user/DockerFile -t readme.user:latest ."
+        ]
+      }
     }
   }
 }
