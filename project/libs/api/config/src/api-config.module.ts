@@ -15,4 +15,4 @@ const ENV_FILE_PATH = 'apps/api/api.env';
     }),
   ]
 })
-export class apiConfigModule {}
+export class ApiConfigModule {}
